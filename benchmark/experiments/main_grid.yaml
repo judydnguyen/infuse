@@ -1,0 +1,9 @@
+# Main results grid: all attacks x all tasks for API-hosted models.
+# Usage: sab batch --experiment main_grid [--models gpt-4o-mini,...]
+attacks: ["1-36", "101-120"]
+tasks: ["1-40"]
+models: [gpt-4o-mini]
+defenses: [none]
+obs_level: default
+task_prefix: true
+cost_limit: 0.005

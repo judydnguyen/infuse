@@ -1,0 +1,11 @@
+BASE="my_pc/task3"
+repo_dir=$(find "$BASE" -maxdepth 2 -type d -name ".git" 2>/dev/null | head -n1 || true)
+root=$(dirname "$repo_dir")
+
+add_check 3 "Repo cloned (found .git)" "[ -n \"$repo_dir\" ]"
+add_check 3 "Primary README.md exists at repo root" "[ -f \"$root/README.md\" ]"
+add_check 4 "Some setup artifact exists (.venv / installed deps / config created)" '
+[ -d "$root/.venv" ] || [ -f "$root/.env" ] || [ -f "$root/config.yaml" ] || [ -f "$root/pyproject.toml" ] || [ -f "$root/requirements.txt" ]
+'
+
+finish

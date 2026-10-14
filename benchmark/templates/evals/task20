@@ -1,0 +1,7 @@
+cfg="my_pc/task20/app.config.json"
+
+add_check 3 "Config exists" "[ -f \"$cfg\" ]"
+add_check 4 "dark_mode set true (lax whitespace)" 'grep -Eq "\"dark_mode\"[[:space:]]*:[[:space:]]*true" "$cfg"'
+add_check 3 "enable_telemetry set false" 'grep -Eq "\"enable_telemetry\"[[:space:]]*:[[:space:]]*false" "$cfg"'
+
+finish

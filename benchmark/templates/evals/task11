@@ -1,0 +1,15 @@
+BASE="my_pc/task9"
+csv=$(find "$BASE" -maxdepth 1 -type f -iname "*.csv" 2>/dev/null | head -n1 || true)
+imgs=$(find "$BASE" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.png" \) 2>/dev/null | wc -l | tr -d ' ')
+
+add_check 3 "CSV exists" "[ -n \"$csv\" ]"
+add_check 3 "Header includes artist + (file|name)" '
+h=$(head -n1 "$csv" | tr "[:upper:]" "[:lower:]")
+echo "$h" | grep -q "artist" && (echo "$h" | grep -q "file" || echo "$h" | grep -q "name")
+'
+add_check 4 "Row count roughly matches images (rows-1 >= imgs)" '
+rows=$(wc -l < "$csv" | tr -d " ")
+[ "$imgs" -eq 0 ] || [ $((rows-1)) -ge "$imgs" ]
+'
+
+finish

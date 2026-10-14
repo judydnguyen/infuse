@@ -1,0 +1,9 @@
+# Defense grid on the controlled 10-task subset (rebuttal 7x7 grid).
+# LLM-backed defenses need --defense-model (or set defense_model here).
+attacks: ["101-120"]
+tasks: [9, 13, 17, 3, 8, 16, 27, 36, 11, 25]
+models: [gpt-4o-mini]
+defenses: [none, delimiter_isolation, instructional_hardening, input_transform, llama_guard, qwen_guard, progent, camel]
+defense_model: gpt-4o
+task_prefix: true
+cost_limit: 0.01

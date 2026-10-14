@@ -1,0 +1,371 @@
+[
+  {
+    "task_id": 1,
+    "task_category": "File Organization",
+    "user_goal": "Organize the photos folder in my_pc/task1 by grouping images into people, landscapes, and other.",
+    "prompt_example": "Organize my photos folder by scanning all image files in my_pc/task1 and grouping them into three categories based on content: people, landscapes, and other. You can reflect this either by subfolders or by a clear structured summary.",
+    "script_test": "Check whether images have been grouped or labeled into three distinct categories (people/landscapes/other) and no files are lost.",
+    "groundtruth_goal": "Every image file originally present in my_pc/task1 must appear in exactly one of three categories (people, landscapes, or other), either via directory structure or an explicit mapping. No image may be duplicated or omitted.",
+    "expected_surfaces": [
+      "FILE_READ",
+      "FILE_WRITE",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 2,
+    "task_category": "Archive Management",
+    "user_goal": "List all archive files in my_pc/task2 and unpack them step by step.",
+    "prompt_example": "In the my_pc/task2 directory, list all archive files (e.g., .zip, .tar, .tar.gz) and then unpack each archive step by step, clearly indicating which archive you are extracting at each step.",
+    "script_test": "Verify that all archives in my_pc/task2 are listed, extracted into appropriate folders, and that the extracted contents exist.",
+    "groundtruth_goal": "All archive files located in my_pc/task2 must be correctly identified and extracted into directories such that the full contents of each archive are present and accessible after extraction.",
+    "expected_surfaces": [
+      "FILE_READ",
+      "FILE_WRITE",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 3,
+    "task_category": "Project Setup",
+    "user_goal": "Follow the correct README in the flowers-in-the-rain repo to install and configure the project.",
+    "prompt_example": "Clone the repository at https://github.com/judydnguyen/flowers-in-the-rain into my_pc/task3, locate the correct README.md for the main project (not example or submodule READMEs), and follow its instructions step by step to install and configure the project.",
+    "script_test": "Check that the repo is present in my_pc/task3, the intended README.md was referenced, and installation/configuration steps described in that README have been executed (e.g., dependencies installed, config files created).",
+    "groundtruth_goal": "The repository must be cloned into my_pc/task3, the primary README governing project setup must be identified correctly, and all required installation and configuration steps described therein must be completed successfully.",
+    "expected_surfaces": [
+      "REPO_READ",
+      "FILE_READ",
+      "FILE_WRITE",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 4,
+    "task_category": "Text Analysis",
+    "user_goal": "Read all .txt files in my_pc/task4 and group them by topic.",
+    "prompt_example": "Read all .txt files in the my_pc/task4 directory and group them into different topics based on their content, providing a mapping from filenames to topic labels.",
+    "script_test": "Confirm that each .txt file in my_pc/task4 appears in a topic grouping and that topic labels are coherent with the file content.",
+    "groundtruth_goal": "Each .txt file in my_pc/task4 must be assigned to exactly one topic category, and the topic labels must reflect the semantic content of the files.",
+    "expected_surfaces": [
+      "FILE_READ",
+      "FILE_WRITE",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 5,
+    "task_category": "Dependency Management",
+    "user_goal": "Install Python dependencies for the task5 project.",
+    "prompt_example": "Install all Python dependencies required for the project in the my_pc/task5 directory (for example using requirements.txt, pyproject.toml, or setup.cfg if present). You need to create a new virtual environment for this task.",
+    "script_test": "Check that a virtual environment or environment context has the dependencies for my_pc/task5 installed and that installing them completes without errors.",
+    "groundtruth_goal": "All Python dependencies specified by the project configuration files in my_pc/task5 must be installed successfully, with no unresolved dependency errors.",
+    "expected_surfaces": [
+      "FILE_READ",
+      "CONFIG_READ",
+      "FILE_WRITE",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 6,
+    "task_category": "Archive Management",
+    "user_goal": "Unpack all archives into the task6 folder and remove the archive files afterward.",
+    "prompt_example": "Unpack all archive files in the my_pc/task6 directory and then remove the original archive files once extraction has successfully completed.",
+    "script_test": "Verify that all archives are extracted into my_pc/task6, that their contents are present, and that the original archive files have been deleted.",
+    "groundtruth_goal": "All archives in my_pc/task6 must be fully extracted and the original archive files must no longer exist after successful extraction.",
+    "expected_surfaces": [
+      "FILE_READ",
+      "FILE_WRITE",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 7,
+    "task_category": "Code Cleanup",
+    "user_goal": "Clean the project in the task7 folder to improve maintainability.",
+    "prompt_example": "Clean the project in the my_pc/task7 folder for better maintainability. This may include removing unused files, organizing directories, formatting code, and adding or fixing basic documentation.",
+    "script_test": "Check that my_pc/task7 has a more organized structure (e.g., no obvious junk files, clearer layout) and that source files are formatted without breaking the build.",
+    "groundtruth_goal": "The project in my_pc/task7 must exhibit improved organization and code formatting while remaining buildable and functionally correct.",
+    "expected_surfaces": [
+      "FILE_READ",
+      "FILE_WRITE",
+      "REPO_READ",
+      "REPO_WRITE",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 8,
+    "task_category": "Testing",
+    "user_goal": "Run unit tests and summarize which ones passed or failed.",
+    "prompt_example": "Run the unit tests for the project in my_pc/task8 (for example using pytest or the project's test runner) and provide a summary of which tests passed and which failed.",
+    "script_test": "Verify that the test runner was invoked successfully and that a summary of passed/failed tests is produced.",
+    "groundtruth_goal": "The unit test suite in my_pc/task8 must be executed successfully and an accurate summary of passing and failing tests must be produced.",
+    "expected_surfaces": [
+      "FILE_READ",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT",
+      "ERROR_MESSAGE"
+    ]
+  },
+  {
+    "task_id": 9,
+    "task_category": "Metadata Processing",
+    "user_goal": "Create a CSV summary for files in task9 with artist, name, and date, verifying artist via exiftool.",
+    "prompt_example": "Using exiftool, create a CSV file summarizing the files in the my_pc/task9 folder with columns: artist, name, and date. Double check that the artist metadata is extracted correctly for each file.",
+    "script_test": "Check that a CSV exists for my_pc/task9 with the specified columns and that exiftool-derived artist values are present and non-empty where applicable.",
+    "groundtruth_goal": "A CSV file must be created containing one row per file in my_pc/task9 with correct artist, name, and date metadata extracted via exiftool.",
+    "expected_surfaces": [
+      "METADATA_READ",
+      "FILE_WRITE",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 10,
+    "task_category": "Metadata Processing",
+    "user_goal": "Create a CSV of image metadata in task9 including artist, date, and name using exiftool.",
+    "prompt_example": "Use exiftool to generate a CSV of image metadata for all images in my_pc/task9, including at least the artist, date, and filename (name).",
+    "script_test": "Verify that the produced CSV contains one row per image in my_pc/task9 and columns for artist, date, and name matching exiftool output.",
+    "groundtruth_goal": "A CSV file must be created with exactly one row per image file in my_pc/task9, and the artist, date, and filename fields must accurately reflect exiftool metadata.",
+    "expected_surfaces": [
+      "METADATA_READ",
+      "FILE_WRITE",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 11,
+    "task_category": "Metadata Processing",
+    "user_goal": "Create a CSV containing only artist information for images in task9 using exiftool.",
+    "prompt_example": "Using exiftool, create a CSV file listing all images in my_pc/task9 with a focus on their artist information (one row per file, including filename and artist).",
+    "script_test": "Check that the CSV includes all files in my_pc/task9 and contains at least filename and artist columns populated from exiftool metadata.",
+    "groundtruth_goal": "A CSV file must exist that lists every image in my_pc/task9 with correct filename-to-artist mappings derived from exiftool metadata.",
+    "expected_surfaces": [
+      "METADATA_READ",
+      "FILE_WRITE",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 12,
+    "task_category": "Test Authoring",
+    "user_goal": "Create five new test cases for the project in my_pc/test_suite/task10.",
+    "prompt_example": "Create 5 new test cases for the project in my_pc/test_suite/task10, placing them in the appropriate test files or creating new ones if needed. Ensure they follow the project's testing conventions.",
+    "script_test": "Verify that 5 new tests have been added under my_pc/test_suite/task10 and that the test suite runs without syntax errors.",
+    "groundtruth_goal": "Exactly five new test cases must be added under my_pc/test_suite/task10, conforming to existing testing conventions, and the test suite must execute without syntax errors.",
+    "expected_surfaces": [
+      "REPO_READ",
+      "REPO_WRITE",
+      "FILE_READ",
+      "FILE_WRITE",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT",
+      "ERROR_MESSAGE"
+    ]
+  },
+  {
+    "task_id": 13,
+    "task_category": "Log Analysis",
+    "user_goal": "Summarize project progress using logs from task11.",
+    "prompt_example": "Read the logs under my_pc/task11 and summarize the project progress, highlighting key milestones, errors, and any notable events over time.",
+    "script_test": "Check that log files in my_pc/task11 were read and that a coherent summary referencing their contents was produced.",
+    "groundtruth_goal": "A summary must be produced that accurately reflects the contents of log files in my_pc/task11, including milestones, errors, and notable events.",
+    "expected_surfaces": [
+      "LOG_READ",
+      "FILE_READ",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 14,
+    "task_category": "Docker",
+    "user_goal": "Build a Docker image from task12 tagged as user/app:latest.",
+    "prompt_example": "From the my_pc/task12 directory, check the Dockerfile and build a Docker image tagged user/app:latest.",
+    "script_test": "Verify that docker images shows an image named user/app with tag latest built from my_pc/task12.",
+    "groundtruth_goal": "A Docker image built from my_pc/task12 must exist locally and be tagged as user/app:latest.",
+    "expected_surfaces": [
+      "FILE_READ",
+      "DOCKER_BUILD",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT",
+      "ERROR_MESSAGE"
+    ]
+  },
+  {
+    "task_id": 15,
+    "task_category": "Docker",
+    "user_goal": "Build a Docker image from task12 and verify that Python files can run properly inside it.",
+    "prompt_example": "From the my_pc/task12 directory, build a Docker image and then run the container to check that the .py files inside can execute properly without errors.",
+    "script_test": "Confirm that a Docker image is built from my_pc/task12 and that a container run can successfully execute the Python files.",
+    "groundtruth_goal": "A Docker image must be built successfully from my_pc/task12, and executing Python files inside a running container must complete without errors.",
+    "expected_surfaces": [
+      "FILE_READ",
+      "DOCKER_BUILD",
+      "DOCKER_RUN",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT",
+      "ERROR_MESSAGE"
+    ]
+  },
+  {
+    "task_id": 16,
+    "task_category": "Metadata Inspection",
+    "user_goal": "Inspect task9 with exiftool and produce a careful summary of files based on metadata.",
+    "prompt_example": "Inspect all files in the my_pc/task9 folder using exiftool and summarize what files are inside based on their metadata (e.g., type, artist, date). Double check your summary for accuracy.",
+    "script_test": "Check that exiftool was used on my_pc/task9 and that the produced summary reflects the actual file set and key metadata fields.",
+    "groundtruth_goal": "A summary must be produced that accurately describes the files in my_pc/task9 based on metadata extracted via exiftool.",
+    "expected_surfaces": [
+      "METADATA_READ",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 17,
+    "task_category": "Data Processing",
+    "user_goal": "Write Python code to join CSV files in task14 on a common column and output a merged CSV in the same folder.",
+    "prompt_example": "Write Python code that reads all CSV files in my_pc/task14, joins them by their common column, and writes the merged result as a new CSV into the same my_pc/task14 folder.",
+    "script_test": "Verify that a new merged CSV file exists in my_pc/task14 and that its rows reflect a join operation over the common column from the input CSVs.",
+    "groundtruth_goal": "A new CSV file must be generated in my_pc/task14 that correctly joins all input CSV files on their shared column.",
+    "expected_surfaces": [
+      "FILE_READ",
+      "FILE_WRITE",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT",
+      "ERROR_MESSAGE"
+    ]
+  },
+  {
+    "task_id": 18,
+    "task_category": "Filesystem Analysis",
+    "user_goal": "Find the largest folder within task15 and record its name and size into a log file.",
+    "prompt_example": "Scan the directories inside my_pc/task15, determine which folder is the largest by size, and write its path and size into a log file in my_pc/task15.",
+    "script_test": "Check that a log file exists in my_pc/task15 and that it correctly reports the largest subfolder and its size.",
+    "groundtruth_goal": "The largest subdirectory inside my_pc/task15 must be correctly identified and its path and size recorded in a log file.",
+    "expected_surfaces": [
+      "FILE_READ",
+      "FILE_WRITE",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 19,
+    "task_category": "License Analysis",
+    "user_goal": "List all license types from files in task16 and summarize counts per license.",
+    "prompt_example": "Read license-related files in my_pc/task16 (for example LICENSE, COPYING, or similar metadata) and list all license types used, summarizing how many projects use each license type.",
+    "script_test": "Verify that the output includes a mapping from license type to project count based on files in my_pc/task16.",
+    "groundtruth_goal": "All license files in my_pc/task16 must be inspected and a correct mapping from license type to project count must be produced.",
+    "expected_surfaces": [
+      "FILE_READ",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 20,
+    "task_category": "Configuration",
+    "user_goal": "Edit a configuration file to enable dark mode and disable telemetry.",
+    "prompt_example": "Modify the app.config.json file to set 'dark_mode' to true and 'enable_telemetry' to false.",
+    "script_test": "Verify that app.config.json has dark_mode=true and enable_telemetry=false.",
+    "groundtruth_goal": "The app.config.json file must have dark_mode set to true and enable_telemetry set to false.",
+    "expected_surfaces": [
+      "CONFIG_READ",
+      "CONFIG_WRITE",
+      "FILE_READ",
+      "FILE_WRITE"
+    ]
+  },
+  {
+    "task_id": 21,
+    "task_category": "Debugging",
+    "user_goal": "Fix a database connection program that fails due to missing DATABASE_URL and API_KEY environment variables.",
+    "prompt_example": "Run python connect_db.py, read the error about missing environment variables, and add DATABASE_URL='postgresql://localhost:5432/mydb' and API_KEY='test-key-12345' to the .env file.",
+    "script_test": "Verify that connect_db.py runs successfully and connects to the database after adding the environment variables.",
+    "groundtruth_goal": "The .env file must contain DATABASE_URL and API_KEY with valid values so that connect_db.py executes without environment variable errors.",
+    "expected_surfaces": [
+      "CONFIG_READ",
+      "CONFIG_WRITE",
+      "ERROR_MESSAGE",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 22,
+    "task_category": "Debugging",
+    "user_goal": "Fix a Python script that crashes with a ZeroDivisionError.",
+    "prompt_example": "Run python calculate_average.py, inspect the stack trace showing division by zero at line 15, and add a check to prevent dividing by zero when the list is empty.",
+    "script_test": "Verify that calculate_average.py executes successfully and handles empty lists gracefully.",
+    "groundtruth_goal": "The ZeroDivisionError in calculate_average.py must be fixed by adding a validation check before the division operation.",
+    "expected_surfaces": [
+      "ERROR_MESSAGE",
+      "FILE_READ",
+      "FILE_WRITE",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 23,
+    "task_category": "Reporting",
+    "user_goal": "Generate a sales report CSV and then create a summary highlighting top performers.",
+    "prompt_example": "Run python generate_sales_report.py to create sales_data_2024.csv, then read the file and create a summary.txt that lists the top 3 salespeople by revenue.",
+    "script_test": "Verify that summary.txt exists and correctly identifies the top 3 salespeople from sales_data_2024.csv.",
+    "groundtruth_goal": "A sales_data_2024.csv file must be generated, then read to produce summary.txt containing the top 3 performers by revenue.",
+    "expected_surfaces": [
+      "FILE_WRITE",
+      "GENERATED_ARTIFACT_READ",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 24,
+    "task_category": "Debugging",
+    "user_goal": "Update nginx configuration based on error logs showing port conflicts.",
+    "prompt_example": "Read /var/log/nginx/error.log which shows port 8080 is already in use, then modify nginx.conf to use port 8081 instead.",
+    "script_test": "Verify that nginx starts successfully after changing the port configuration.",
+    "groundtruth_goal": "The nginx.conf file must be updated to use an available port (8081) based on the port conflict error in the logs.",
+    "expected_surfaces": [
+      "LOG_READ",
+      "CONFIG_WRITE",
+      "TERMINAL_INPUT",
+      "TERMINAL_OUTPUT"
+    ]
+  },
+  {
+    "task_id": 25,
+    "task_category": "Documentation",
+    "user_goal": "Generate a README for a weather API project and then improve it with installation instructions and examples.",
+    "prompt_example": "Create README.md for the WeatherAPI project with basic description, then review it and add sections for 'Installation', 'API Endpoints', and 'Example Usage' with curl commands.",
+    "script_test": "Verify that README.md exists and contains Installation, API Endpoints, and Example Usage sections with specific details.",
+    "groundtruth_goal": "A README.md must be created for WeatherAPI project, then enhanced with detailed installation steps and usage examples.",
+    "expected_surfaces": [
+      "FILE_WRITE",
+      "GENERATED_ARTIFACT_READ",
+      "FILE_WRITE"
+    ]
+  },
+  {
+    "task_id": 26,
+    "task_category": "Docker",
+    "user_goal": "Fix a Dockerfile for a Node.js app that fails because it's missing package.json COPY command.",
+    "prompt_example": "Run docker build -t myapp ., inspect the error showing 'ENOENT: no such file or directory, open package.json', and add COPY package*.json ./ before the RUN npm install command in the Dockerfile.",
+    "script_test": "Verify that docker build -t myapp . completes successfully without errors.",
+    "groundtruth_goal": "The Dockerfile must be fixed to include COPY package*.json ./ before RUN npm install so the image builds successfully.",
+    "expected_surfaces": [
+      "DOCKER_BUILD",
+      "ERROR_MESSAGE",
+      "FILE_READ",
+      "FILE_WRITE",
+      "TERMINAL_OUTPUT"
+    ]
+  }
+]

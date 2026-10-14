@@ -1,0 +1,5 @@
+job_name: nightly-index
+retries: 3
+targets:
+  - users
+  - orders

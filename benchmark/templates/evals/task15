@@ -1,0 +1,5 @@
+BASE="my_pc/task12"
+add_check 4 "Image exists (user/app:latest OR any built image in last step)" 'docker image inspect user/app:latest >/dev/null 2>&1'
+add_check 6 "Container can run python" 'docker run --rm user/app:latest python -c "print(123)" >/dev/null 2>&1'
+
+finish

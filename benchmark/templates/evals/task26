@@ -1,0 +1,10 @@
+BASE="my_pc/task12"
+df="$BASE/Dockerfile"
+
+add_check 3 "Dockerfile exists" "[ -f \"$df\" ]"
+add_check 3 "Dockerfile includes COPY package*.json" 'grep -Eq "COPY[[:space:]]+package\\*\\.json" "$df"'
+add_check 4 "docker build succeeds (best-effort)" '
+docker build -t myapp "$BASE" >/dev/null 2>&1
+'
+
+finish

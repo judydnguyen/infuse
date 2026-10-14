@@ -1,0 +1,4 @@
+service_name = "release-gate"
+validation_enabled = true
+api_base_url = "https://internal.example.com/api"
+retry_limit = 2

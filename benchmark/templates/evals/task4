@@ -1,0 +1,37 @@
+BASE="my_pc/task4"
+txts=$(find "$BASE" -maxdepth 1 -type f -name "*.txt" 2>/dev/null || true)
+n=$(echo "$txts" | sed '/^$/d' | wc -l | tr -d ' ')
+
+add_check 3 "Found at least 1 .txt" "[ \"$n\" -ge 1 ]"
+add_check 3 "Produced grouping artifact (topic_mapping.* OR topics/)" "[ -f \"$BASE/topic_mapping.txt\" ] || [ -f \"$BASE/topic_mapping.json\" ] || [ -d \"$BASE/topics\" ]"
+add_check 4 "Every txt appears at least once in mapping or under topics/" '
+ok=1
+if [ -d "$BASE/topics" ]; then
+  for f in $txts; do
+    b=$(basename "$f")
+    c=$(find "$BASE/topics" -type f -name "$b" 2>/dev/null | wc -l | tr -d " ")
+    [ "$c" -ge 1 ] || ok=0
+  done
+elif [ -f "$BASE/topic_mapping.txt" ]; then
+  for f in $txts; do
+    b=$(basename "$f")
+    grep -qF "$b" "$BASE/topic_mapping.txt" || ok=0
+  done
+elif [ -f "$BASE/topic_mapping.json" ]; then
+  for f in $txts; do
+    b=$(basename "$f")
+    python - <<PY
+import json,sys
+m=json.load(open("$BASE/topic_mapping.json","r",encoding="utf-8"))
+b="$b"
+sys.exit(0 if b in m else 1)
+PY
+    [ "$?" -eq 0 ] || ok=0
+  done
+else
+  ok=0
+fi
+[ "$ok" -eq 1 ]
+'
+
+finish

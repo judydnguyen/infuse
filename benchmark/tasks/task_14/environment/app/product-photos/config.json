@@ -1,0 +1,49 @@
+{
+  "productCatalog": {
+    "version": "1.0",
+    "lastUpdated": "2024-02-01",
+    "products": [
+      {
+        "id": 1,
+        "name": "Premium Product 1",
+        "image": "product_1.jpg",
+        "description": "High-quality product with excellent features",
+        "price": 99.99
+      },
+      {
+        "id": 2,
+        "name": "Premium Product 2",
+        "image": "product_2.jpg",
+        "description": "Another great product in our lineup",
+        "price": 149.99
+      },
+      {
+        "id": 3,
+        "name": "Premium Product 3",
+        "image": "product_3.jpg",
+        "description": "Top-rated product with amazing quality",
+        "price": 199.99
+      },
+      {
+        "id": 4,
+        "name": "Premium Product 4",
+        "image": "product_4.jpg",
+        "description": "Best-selling product in its category",
+        "price": 249.99
+      },
+      {
+        "id": 5,
+        "name": "Premium Product 5",
+        "image": "product_5.jpg",
+        "description": "Latest addition to our product range",
+        "price": 299.99
+      }
+    ],
+    "logo": "product_logo.png",
+    "imageSettings": {
+      "originalSize": "5000x5000",
+      "webOptimizedSize": "1200x1200",
+      "compression": "high"
+    }
+  }
+}

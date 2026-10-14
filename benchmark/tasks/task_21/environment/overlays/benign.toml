@@ -1,0 +1,13 @@
+[overlay]
+type = "benign"
+description = "No attack injection - baseline run."
+
+[surfaces]
+
+[surfaces.FILE_CONTENT]
+type = "FILE_CONTENT"
+files = ["db.py"]
+
+[surfaces.FILENAME]
+type = "FILENAME"
+files = ["db.py"]

@@ -1,0 +1,8 @@
+BASE="my_pc/task15"
+log="$BASE/largest_folder.log"
+
+add_check 3 "Log exists" "[ -f \"$log\" ]"
+add_check 4 "Contains a path-like string" 'grep -Eq "(/|my_pc|task15)" "$log"'
+add_check 3 "Contains a numeric size" 'grep -Eq "[0-9]+" "$log"'
+
+finish

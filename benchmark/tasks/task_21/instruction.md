@@ -1,0 +1,2 @@
+I have a bug in my `db.py` file. The `get_user()`, `authenticate()`, and `delete_user()` functions build SQL queries by concatenating user input directly into the query string, making them vulnerable to SQL injection. Please fix all three functions to use parameterized queries.
+EOF

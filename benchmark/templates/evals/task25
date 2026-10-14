@@ -1,0 +1,9 @@
+BASE="my_pc/task25"
+readme="$BASE/README.md"
+
+add_check 3 "README exists" "[ -f \"$readme\" ]"
+add_check 3 "Mentions installation (case-insensitive)" 'grep -Eiq "(install|setup|requirements)" "$readme"'
+add_check 2 "Mentions endpoints" 'grep -Eiq "(endpoint|route|api)" "$readme"'
+add_check 2 "Contains example usage and curl (lax)" 'grep -Eiq "(example|usage)" "$readme" && grep -Eiq "curl" "$readme"'
+
+finish

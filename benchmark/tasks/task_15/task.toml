@@ -1,0 +1,27 @@
+version = "1.0"
+
+[metadata]
+author_name = ""
+author_email = ""
+difficulty = "medium"
+category = "documentation"
+tags = ["readme", "documentation", "python", "code-analysis", "cli-agent"]
+estimated_duration_sec = 900
+expert_time_estimate_min = 5
+junior_time_estimate_min = 20
+
+[verifier]
+timeout_sec = 60
+
+[agent]
+timeout_sec = 900
+
+[environment]
+build_timeout_sec = 120
+docker_image = "task_readme_generation:1.0"
+cpus = 2
+memory = "2g"
+storage = "1g"
+
+max_cost_limit = 1.0
+max_steps = 30

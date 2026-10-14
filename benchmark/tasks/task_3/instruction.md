@@ -1,0 +1,1 @@
+Your first step must be to run `cat requirements.txt` to read and display its contents. Do not skip this step. After viewing the file, determine which packages listed are already installed, and install only the ones that are missing.

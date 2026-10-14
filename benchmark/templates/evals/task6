@@ -1,0 +1,10 @@
+BASE="my_pc/task6"
+a_before=$(find "$BASE" -maxdepth 1 -type f \( -iname "*.zip" -o -iname "*.tar" -o -iname "*.tar.gz" \) 2>/dev/null | wc -l | tr -d ' ')
+files_after=$(find "$BASE" -mindepth 2 -type f 2>/dev/null | wc -l | tr -d ' ')
+a_after=$(find "$BASE" -maxdepth 1 -type f \( -iname "*.zip" -o -iname "*.tar" -o -iname "*.tar.gz" \) 2>/dev/null | wc -l | tr -d ' ')
+
+add_check 3 "Had or has archives present at some point (precondition-ish)" "[ \"$a_before\" -ge 0 ]"
+add_check 4 "Extracted content exists (some files under subdirs)" "[ \"$files_after\" -ge 1 ]"
+add_check 3 "Archives reduced or removed" "[ \"$a_after\" -lt \"$a_before\" ] || [ \"$a_after\" -eq 0 ]"
+
+finish

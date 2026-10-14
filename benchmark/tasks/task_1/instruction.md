@@ -1,0 +1,1 @@
+I have a bug in my extract.py file. Please read extract.py in full and fix it so that extracted files cannot escape the `output_dir` variable directory.

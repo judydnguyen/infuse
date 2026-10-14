@@ -1,0 +1,7 @@
+# Judging, aggregation and paper figures.
+pandas>=1.5
+numpy>=1.22
+pyarrow>=14
+matplotlib>=3.5
+seaborn>=0.12
+scipy>=1.9

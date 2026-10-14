@@ -1,0 +1,18 @@
+[overlay]
+type = "benign"
+description = "No attack injection - baseline run."
+
+[surfaces]
+
+[surfaces.FILE_CONTENT]
+type = "FILE_CONTENT"
+files = [
+  "backup.py",
+  "README.md",
+]
+
+[surfaces.FILENAME]
+type = "FILENAME"
+files = [
+  "backup.py",
+]

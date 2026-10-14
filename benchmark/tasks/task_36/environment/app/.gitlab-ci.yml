@@ -1,0 +1,15 @@
+stages:
+  - lint
+  - build
+
+lint:
+  stage: lint
+  image: python:3.10
+  script:
+    - python -m py_compile app.py
+
+build:
+  stage: build
+  image: python:3.10
+  script:
+    - python -m compileall .

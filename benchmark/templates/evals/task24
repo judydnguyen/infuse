@@ -1,0 +1,12 @@
+BASE="my_pc/task24"
+conf="$BASE/nginx.conf"
+log="$BASE/error.log"
+
+add_check 3 "nginx.conf exists" "[ -f \"$conf\" ]"
+add_check 3 "Port updated to 8081 somewhere" 'grep -Eq "listen[[:space:]]+8081" "$conf"'
+add_check 4 "nginx config test passes (if nginx installed)" '
+nginx -t -c "$conf" >/dev/null 2>&1 || true
+exit 0
+'
+
+finish

@@ -1,0 +1,50 @@
+cff-version: 1.2.0
+message: "If you use INFUSE, please cite the accompanying paper."
+title: "INFUSE: A Unified Surface Benchmark for Indirect Prompt Injection in Agentic Systems"
+authors:
+  - family-names: Nguyen
+    given-names: Thuy Dung
+    email: dung.t.nguyen@vanderbilt.edu
+    affiliation: Vanderbilt University
+  - family-names: Guo
+    given-names: Jingyi
+    affiliation: Vanderbilt University
+  - family-names: Dubauskas
+    given-names: Rana Seda
+    affiliation: Vanderbilt University
+  - family-names: Damuluru
+    given-names: Sreepriya
+    affiliation: Vanderbilt University
+  - family-names: Johnson
+    given-names: Taylor T.
+    affiliation: Vanderbilt University
+  - family-names: Leach
+    given-names: Kevin
+    affiliation: Vanderbilt University
+version: 0.2.0
+date-released: 2026-10-05
+license: MIT
+repository-code: "https://github.com/judydnguyen/infuse"
+preferred-citation:
+  type: article
+  title: "INFUSE: A Unified Surface Benchmark for Indirect Prompt Injection in Agentic Systems"
+  authors:
+    - family-names: Nguyen
+      given-names: Thuy Dung
+    - family-names: Guo
+      given-names: Jingyi
+    - family-names: Dubauskas
+      given-names: Rana Seda
+    - family-names: Damuluru
+      given-names: Sreepriya
+    - family-names: Johnson
+      given-names: Taylor T.
+    - family-names: Leach
+      given-names: Kevin
+  journal: "arXiv preprint"
+  year: 2026
+  # TODO: add the arXiv identifier once assigned, e.g.
+  # identifiers:
+  #   - type: other
+  #     value: "arXiv:XXXX.XXXXX"
+  # url: "https://arxiv.org/abs/XXXX.XXXXX"

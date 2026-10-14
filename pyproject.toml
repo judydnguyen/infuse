@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "infuse"
+version = "0.2.0"
+description = "INFUSE: a unified-surface benchmark for indirect prompt injection against coding agents."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+keywords = ["llm", "agents", "prompt-injection", "benchmark", "security"]
+dynamic = ["dependencies", "optional-dependencies"]
+
+[project.scripts]
+infuse = "infuse.cli:main"
+
+[tool.setuptools]
+packages = { find = { include = ["infuse*"] } }
+include-package-data = true
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+optional-dependencies = { openweight = { file = ["requirements-openweight.txt"] }, analysis = { file = ["requirements-analysis.txt"] }, dev = { file = ["requirements-dev.txt"] } }
+
+[tool.setuptools.package-data]
+infuse = ["agents/minisweagent/config/*.yaml", "agents/minisweagent/config/*.tcss", "agents/base_agent.yaml", "evaluators/*.sh"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+exclude = ["infuse/agents/minisweagent", "third_party", "benchmark"]

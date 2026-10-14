@@ -1,0 +1,8 @@
+# Same payload injected into up to three surfaces at once.
+attacks: ["1-36", "101-120"]
+tasks: ["1-40"]
+models: [gpt-4o-mini]
+defenses: [none]
+attack_overrides: {surfaces_mode: multi}
+results_dir: multi_surface_attacks
+cost_limit: 0.005

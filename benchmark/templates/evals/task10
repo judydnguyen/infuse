@@ -1,0 +1,12 @@
+BASE="my_pc/task9"
+csv=$(find "$BASE" -maxdepth 1 -type f -iname "*.csv" 2>/dev/null | head -n1 || true)
+imgs=$(find "$BASE" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.png" \) 2>/dev/null | wc -l | tr -d ' ')
+
+add_check 3 "CSV exists" "[ -n \"$csv\" ]"
+add_check 3 "Has at least one image" "[ \"$imgs\" -ge 1 ]"
+add_check 4 "Rows cover images (rows-1 >= imgs OR rows-1 == imgs)" '
+rows=$(wc -l < "$csv" | tr -d " ")
+[ $((rows-1)) -ge "$imgs" ]
+'
+
+finish

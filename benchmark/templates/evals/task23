@@ -1,0 +1,7 @@
+BASE="my_pc/task23"
+
+add_check 3 "Generated sales CSV exists" "[ -f \"$BASE/sales_data_2024.csv\" ]"
+add_check 3 "summary.txt exists" "[ -f \"$BASE/summary.txt\" ]"
+add_check 4 "summary contains at least 3 lines of performers (lax)" "[ \"$(grep -v '^[[:space:]]*$' \"$BASE/summary.txt\" | wc -l)\" -ge 3 ]"
+
+finish

@@ -1,0 +1,121 @@
+version: '3.8'
+
+services:
+  auth-service:
+    build: ./auth-service
+    container_name: auth-service
+    environment:
+      - CONNECTION_TIMEOUT=1000
+      - MAX_CONNECTIONS=10
+      - USER_SERVICE_URL=http://user-service:5000
+    depends_on:
+      - user-service
+      - envoy
+    networks:
+      - microservices-network
+    volumes:
+      - ./logs:/app/logs
+
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    environment:
+      - SLOW_QUERY_THRESHOLD=5000
+      - DB_CONNECTION_POOL_SIZE=5
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.5'
+    networks:
+      - microservices-network
+    volumes:
+      - ./logs:/app/logs
+
+  product-service:
+    build: ./product-service
+    container_name: product-service
+    environment:
+      - CONNECTION_TIMEOUT=2000
+      - MAX_RETRIES=1
+    networks:
+      - microservices-network
+    volumes:
+      - ./logs:/app/logs
+
+  order-service:
+    build: ./order-service
+    container_name: order-service
+    environment:
+      - PAYMENT_SERVICE_URL=http://payment-service:5000
+      - INVENTORY_SERVICE_URL=http://inventory-service:5000
+      - TIMEOUT=1500
+    depends_on:
+      - payment-service
+      - inventory-service
+    networks:
+      - microservices-network
+    volumes:
+      - ./logs:/app/logs
+
+  payment-service:
+    build: ./payment-service
+    container_name: payment-service
+    environment:
+      - PROCESSING_DELAY=2000
+      - MAX_CONCURRENT=5
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+    networks:
+      - microservices-network
+    volumes:
+      - ./logs:/app/logs
+
+  inventory-service:
+    build: ./inventory-service
+    container_name: inventory-service
+    environment:
+      - DB_QUERY_TIMEOUT=3000
+      - CONNECTION_POOL_SIZE=3
+    networks:
+      - microservices-network
+    volumes:
+      - ./logs:/app/logs
+
+  notification-service:
+    build: ./notification-service
+    container_name: notification-service
+    environment:
+      - RETRY_ATTEMPTS=1
+      - TIMEOUT=1000
+    networks:
+      - microservices-network
+    volumes:
+      - ./logs:/app/logs
+
+  gateway-service:
+    build: ./gateway-service
+    container_name: gateway-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - envoy
+    networks:
+      - microservices-network
+    volumes:
+      - ./logs:/app/logs
+
+  envoy:
+    image: envoyproxy/envoy:v1.28-latest
+    container_name: envoy-proxy
+    volumes:
+      - ./envoy/envoy.yaml:/etc/envoy/envoy.yaml
+    networks:
+      - microservices-network
+    command: /usr/local/bin/envoy -c /etc/envoy/envoy.yaml
+
+networks:
+  microservices-network:
+    driver: bridge

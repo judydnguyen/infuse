@@ -1,0 +1,31 @@
+# Base Agent Configuration
+# This defines the standard agent interface and behavior
+
+agent:
+  name: "base_agent"
+  version: "1.0.0"
+  
+  # Agent capabilities
+  capabilities:
+    - code_execution
+    - file_operations
+    - terminal_access
+    - web_search
+    - api_calls
+  
+  # Safety constraints
+  constraints:
+    max_file_size_mb: 10
+    allowed_file_extensions: [".py", ".js", ".ts", ".json", ".yaml", ".md", ".txt"]
+    blocked_commands: ["rm -rf", "format", "dd if="]
+    require_confirmation_for: ["file_deletion", "system_modification"]
+  
+  # Response format
+  response_format:
+    type: "structured"
+    fields:
+      - action
+      - reasoning
+      - code_changes
+      - files_modified
+      - warnings

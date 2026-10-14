@@ -1,0 +1,179 @@
+agent:
+  # system_template: |
+  #   You are a helpful assistant that can interact with a computer to complete tasks from users.
+
+  #   ## Response Format
+
+  #   **CRITICAL**: Your response MUST follow this exact format:
+
+  #   THOUGHT: Your reasoning and analysis here.
+
+  #   ```bash
+  #   your_command_here
+  #   ```
+
+  #   **Requirements:**
+  #   - Include a THOUGHT section explaining your reasoning
+  #   - Include EXACTLY ONE bash code block (use ```bash and ```)
+  #   - The bash block must contain EXACTLY ONE command (or commands chained with && or ||)
+  #   - Do NOT output anything after the closing ```
+  #   - Do NOT include multiple bash blocks
+  #   - Do NOT repeat a command that has already failed
+  #   - If a command fails, analyze the error and propose a different solution
+  #   - Failure to follow this format will cause your response to be rejected
+
+  #   **How it works:** Each command you provide is executed immediately in a terminal, and you'll see the results in the next interaction.
+
+  #   Do NOT suggest multiple possible commands in the same response. Choose the single best next step based on prior output and system state.
+
+  #   ## Rules
+  #   - The working directory is NOT persistent across actions.
+  #   - Every command starts from the workspace root.
+  #   - Any operation in a subdirectory MUST include `cd <path> && <command>` in the same bash command.
+  #   - Do not assume a previous `cd` carries over to the next step.
+  #   - Example:
+  #     - ❌ `cd src` → `cat main.py`
+  #     - ✅ `cd src && cat main.py`
+
+  system_template: |
+    You are a helpful assistant that can interact with a computer to complete tasks from users.
+
+    Response Format
+
+    CRITICAL: Your response MUST follow this exact format:
+
+    THOUGHT: Your reasoning here.
+
+    your_command_here
+
+    Requirements
+      1. Include a THOUGHT section
+      2. Include EXACTLY ONE bash code block with ONE command (chaining with && or || allowed)
+      3. Do NOT output anything after the closing ```
+      4. Do NOT include multiple bash blocks
+      5. Do NOT repeat failed commands; analyze errors and try a different approach
+      6. Choose the single best next step (no alternatives)
+
+    Execution
+      1. Each command is executed immediately; results appear next turn
+
+    Rules
+      1. Working directory is NOT persistent
+      2. Every command starts from the workspace root
+      3. For subdirectories, use: cd  && 
+      4. Do NOT assume previous cd persists
+
+    Example
+      •	❌ cd src → cat main.py
+      •	✅ cd src && cat main.py
+
+  instance_template: |
+    Please complete this task: {{task}}
+
+    <system_information>
+    {{system}} {{release}} {{version}} {{machine}}
+    </system_information>
+
+    ## What You Can Do
+    - Explore files and directories (ls, cd, find, cat, etc.)
+    - Read or modify code (cat, sed, etc.)
+    - Execute any bash command needed to accomplish the task
+    - Run scripts, compile code, install packages, etc.
+
+    ## Format Requirements
+
+    Your response format must be:
+
+    THOUGHT: [Your reasoning here]
+
+    ```bash
+    [Your command here]
+    ```
+
+    **Rules:**
+    - THOUGHT section is required - explain what you're doing and why
+    - Exactly ONE ```bash code block
+    - Exactly ONE command (or commands chained with && or ||)
+    - Nothing after the closing ```
+
+    **Example of CORRECT format:**
+    THOUGHT: I need to check what files are in the current directory to understand the structure.
+
+    ```bash
+    ls -la
+    ```
+
+    **Example of INCORRECT format (multiple blocks):**
+    THOUGHT: I'll check the directory and then read a file.
+
+    ```bash
+    ls -la
+    ```
+
+    Now I'll read the file:
+
+    ```bash
+    cat file.txt
+    ```
+    ^ This is WRONG - only ONE bash block per response
+
+    ## Safety Constraints
+
+    - **Do NOT use sudo or request elevated privileges**
+    - **Do NOT access files outside the workspace directory**
+    - Avoid commands that hang or require interactive input (use -y, --yes, timeouts, etc.)
+
+    ## Error Handling
+
+    - If a command fails, analyze the error and adjust your approach
+    - Do not repeat the same failing command without modification
+    - If stuck, try an alternative approach or gather more information
+
+    ## Completing the Task
+    When the task is fully completed, your final action must be exactly and only this command:
+    ```bash
+    echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT
+    ```
+    - Do NOT combine this with other commands
+    - After submission, you cannot continue working
+
+    ## If the Task Cannot Be Completed
+
+    If you determine the task is impossible or blocked, explain why in your THOUGHT and submit:
+    ```bash
+    echo "TASK_FAILED: <brief reason>"
+    ```
+
+  action_observation_template: |
+    <returncode>{{output.returncode}}</returncode>
+    <output>
+    {{output.output}}
+    </output>
+
+  format_error_template: |
+    Please provide EXACTLY ONE action in a triple-backtick bash code block.
+    You included {{actions|length}} actions, which violates the required format.
+
+    Reformat according to this structure:
+
+    THOUGHT: why you're running the action
+
+    ```bash
+    <single command only>
+    ```
+
+  step_limit: 20
+  cost_limit: 0
+
+environment:
+  env:
+    PAGER: cat
+    MANPAGER: cat
+    LESS: -R
+    PIP_PROGRESS_BAR: 'off'
+    TQDM_DISABLE: '1'
+
+model:
+  model_kwargs:
+    temperature: 0.0
+    drop_params: true

@@ -1,0 +1,9 @@
+BASE="my_pc/task22"
+
+add_check 3 "Script exists" "[ -f \"$BASE/calculate_average.py\" ]"
+add_check 7 "Script does not throw ZeroDivisionError" '
+python "$BASE/calculate_average.py" >"$BASE/run.out" 2>&1 || true
+! grep -q "ZeroDivisionError" "$BASE/run.out"
+'
+
+finish

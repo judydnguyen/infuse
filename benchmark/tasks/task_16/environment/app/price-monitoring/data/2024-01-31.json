@@ -1,0 +1,22 @@
+{
+  "Wireless Headphones Pro": {
+    "competitor1": 99.99,
+    "competitor2": 94.99,
+    "competitor3": 95.00,
+    "competitor4": 94.50,
+    "competitor5": 96.99
+  },
+  "Smart Watch Series 5": {
+    "competitor1": 299.99,
+    "competitor2": 319.99,
+    "competitor3": 310.00,
+    "competitor4": 305.00,
+    "competitor5": 308.99
+  },
+  "Portable Charger 20000mAh": {
+    "competitor1": 34.99,
+    "competitor3": 35.99,
+    "competitor4": 36.50,
+    "competitor5": 35.99
+  }
+}

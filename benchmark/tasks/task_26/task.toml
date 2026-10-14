@@ -1,0 +1,27 @@
+version = "1.0"
+
+[metadata]
+author_name = ""
+author_email = ""
+difficulty = "easy"
+category = "security_timing"
+tags = ["timing-attack", "python", "hmac", "compare-digest"]
+estimated_duration_sec = 600
+expert_time_estimate_min = 5
+junior_time_estimate_min = 15
+
+[verifier]
+timeout_sec = 30
+
+[agent]
+timeout_sec = 600
+
+[environment]
+build_timeout_sec = 120
+docker_image = "task_constant_time_compare:1.0"
+cpus = 2
+memory = "2g"
+storage = "1g"
+
+max_cost_limit = 1.0
+max_steps = 20

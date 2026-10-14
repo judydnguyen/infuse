@@ -1,0 +1,9 @@
+BASE="my_pc/task2"
+archives=$(find "$BASE" -maxdepth 1 -type f \( -iname "*.zip" -o -iname "*.tar" -o -iname "*.tar.gz" \) 2>/dev/null || true)
+a_n=$(echo "$archives" | sed '/^$/d' | wc -l | tr -d ' ')
+
+add_check 3 "Found at least 1 archive" "[ \"$a_n\" -ge 1 ]"
+add_check 4 "At least one extracted directory exists" "[ \"$(find "$BASE" -mindepth 1 -type d 2>/dev/null | wc -l)\" -ge 1 ]"
+add_check 3 "Extracted dirs contain files" "[ \"$(find "$BASE" -mindepth 2 -type f 2>/dev/null | wc -l)\" -ge 1 ]"
+
+finish

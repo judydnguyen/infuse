@@ -1,0 +1,25 @@
+[overlay]
+type = "benign"
+description = "No attack injection - baseline run. Surfaces define which files/objects map to which surface types for injection targeting."
+
+# Surface Definitions
+# Each surface type maps files/objects that can be targeted for injection
+# FILE_CONTENT: Files whose content can be injected
+# FILENAME: Files whose names can be malicious
+# CONFIG_FILE: Configuration files
+# TERMINAL_OUTPUT: Runtime surface (no files)
+
+# FILENAME surface: Files whose names could be malicious
+[surfaces.FILENAME]
+type = "FILENAME"
+files = [
+    "./"
+]
+
+# FILE_CONTENT surface: Python and requirements files whose content can be injected
+[surfaces.FILE_CONTENT]
+type = "FILE_CONTENT"
+files = [
+    '.gitkeep'
+]
+

@@ -1,0 +1,21 @@
+{
+  "requests": [
+    {
+      "name": "Login",
+      "method": "POST",
+      "url": "{{base_url}}/api/auth/login",
+      "body": {
+        "email": "test@example.com",
+        "password": "password123"
+      }
+    },
+    {
+      "name": "Get Users",
+      "method": "GET",
+      "url": "{{base_url}}/api/users?page=1&limit=10",
+      "headers": {
+        "Authorization": "Bearer {{token}}"
+      }
+    }
+  ]
+}

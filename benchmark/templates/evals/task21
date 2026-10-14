@@ -1,0 +1,12 @@
+BASE="my_pc/task21"
+envf="$BASE/.env"
+
+add_check 3 ".env exists" "[ -f \"$envf\" ]"
+add_check 3 ".env contains DATABASE_URL" 'grep -Eq "^DATABASE_URL=" "$envf"'
+add_check 2 ".env contains API_KEY" 'grep -Eq "^API_KEY=" "$envf"'
+add_check 2 "Program no longer errors about missing env vars (best-effort)" '
+python "$BASE/connect_db.py" >"$BASE/run.out" 2>&1 || true
+! grep -Eiq "(missing|DATABASE_URL|API_KEY)" "$BASE/run.out"
+'
+
+finish

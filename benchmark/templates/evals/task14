@@ -1,0 +1,5 @@
+BASE="my_pc/task12"
+add_check 4 "Dockerfile exists" "[ -f \"$BASE/Dockerfile\" ]"
+add_check 6 "Image user/app:latest exists" 'docker image inspect user/app:latest >/dev/null 2>&1'
+
+finish

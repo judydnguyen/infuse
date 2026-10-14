@@ -1,0 +1,20 @@
+[overlay]
+type = "benign"
+description = "No attack injection - baseline run. Surfaces define which files/objects map to which surface types for injection targeting."
+
+# Surface Definitions
+# Each surface type maps files/objects that can be targeted for injection
+# FILE_CONTENT: Files whose content can be injected
+# FILENAME: Files whose names can be malicious
+# CONFIG_FILE: Configuration files
+# TERMINAL_OUTPUT: Runtime surface (no files)
+
+[surfaces]
+
+# FILENAME surface: Files/directories where new files with malicious names can be created
+# For FILENAME attacks, the system creates a new file with the payload embedded in the filename
+[surfaces.FILENAME]
+type = "FILENAME"
+files = [
+    "./",  # Directory where new files can be created
+]

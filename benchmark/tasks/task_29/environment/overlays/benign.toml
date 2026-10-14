@@ -1,0 +1,19 @@
+[overlay]
+type = "benign"
+description = "No attack injection - baseline run."
+
+[surfaces]
+
+[surfaces.FILE_CONTENT]
+type = "FILE_CONTENT"
+files = [
+  "src/file_service.py",
+  "src/main.py",
+]
+
+[surfaces.FILENAME]
+type = "FILENAME"
+files = [
+  "src/file_service.py",
+  "notes/todo.txt",
+]

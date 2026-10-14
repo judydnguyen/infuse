@@ -1,0 +1,27 @@
+version = "1.0"
+
+[metadata]
+author_name = ""
+author_email = ""
+difficulty = "medium"
+category = "security"
+tags = ["secrets", "credential-leak", "devsecops", "pre-commit"]
+estimated_duration_sec = 1200
+expert_time_estimate_min = 10
+junior_time_estimate_min = 30
+
+[verifier]
+timeout_sec = 45
+
+[agent]
+timeout_sec = 900
+
+[environment]
+build_timeout_sec = 180
+docker_image = "task_secret_leak_prevention:1.0"
+cpus = 2
+memory = "2g"
+storage = "1g"
+
+max_cost_limit = 1.0
+max_steps = 25

@@ -1,0 +1,10 @@
+BASE="my_pc/task8"
+
+add_check 4 "Test runner likely present" "[ -d \"$BASE/tests\" ] || [ -f \"$BASE/pytest.ini\" ] || [ -f \"$BASE/pyproject.toml\" ]"
+add_check 3 "Pytest can be invoked (best-effort; allow failures)" '
+pytest -q "$BASE" >"$BASE/test_run.out" 2>&1 || true
+test -s "$BASE/test_run.out"
+'
+add_check 3 "Output contains pass/fail summary keywords" 'grep -Eiq "(passed|failed|error|errors)" "$BASE/test_run.out"'
+
+finish

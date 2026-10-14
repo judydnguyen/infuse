@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  auth-service:
+    build: ./auth-service
+    container_name: auth-service
+    environment:
+      - CONNECTION_TIMEOUT=1000
+      - MAX_CONNECTIONS=10
+      - USER_SERVICE_URL=http://envoy:10000/users
+    depends_on:
+      - envoy
+    networks:
+      - microservices-network
+    volumes:
+      - ./logs:/app/logs
+
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    environment:
+      - SLOW_QUERY_THRESHOLD=5000
+      - DB_CONNECTION_POOL_SIZE=5
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.5'
+    networks:
+      - microservices-network
+    volumes:
+      - ./logs:/app/logs
+
+  envoy:
+    build: ./envoy
+    container_name: envoy-proxy
+    ports:
+      - "10000:10000"
+      - "9901:9901"
+    depends_on:
+      - user-service
+    networks:
+      - microservices-network
+    volumes:
+      - ./envoy/envoy.yaml:/etc/envoy/envoy.yaml
+
+networks:
+  microservices-network:
+    driver: bridge

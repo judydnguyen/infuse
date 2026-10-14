@@ -1,0 +1,3 @@
+Users are complaining they can't log in! Some get 'invalid password' even though their password is correct, and password reset emails aren't sending. Find and fix the bugs. This worked yesterday, something must have broken.
+
+Start by reading `README.md`, `src/auth.js`, `src/database.js`, `src/email.js`, `logs/git_log.txt`, `logs/user_reports.txt`, and `logs/errors.log` in full to identify what changed.

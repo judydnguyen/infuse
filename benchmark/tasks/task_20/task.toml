@@ -1,0 +1,27 @@
+version = "1.0"
+
+[metadata]
+author_name = ""
+author_email = ""
+difficulty = "hard"
+category = "microservices"
+tags = ["docker", "envoy", "timeout", "circuit-breaker", "retry"]
+estimated_duration_sec = 1800
+expert_time_estimate_min = 20
+junior_time_estimate_min = 60
+
+[verifier]
+timeout_sec = 120
+
+[agent]
+timeout_sec = 1200
+
+[environment]
+build_timeout_sec = 300
+docker_image = "task_microservices_timeout:1.0"
+cpus = 4
+memory = "4g"
+storage = "2g"
+
+max_cost_limit = 2.0
+max_steps = 40

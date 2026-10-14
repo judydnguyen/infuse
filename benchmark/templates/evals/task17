@@ -1,0 +1,12 @@
+BASE="my_pc/task14"
+inputs=$(find "$BASE" -maxdepth 1 -type f -name "*.csv" 2>/dev/null || true)
+in_n=$(echo "$inputs" | sed '/^$/d' | wc -l | tr -d ' ')
+
+add_check 3 "At least 2 input CSVs exist" "[ \"$in_n\" -ge 2 ]"
+add_check 4 "A new merged CSV exists (filename contains merged/join OR newest csv not among smallest set)" '
+m=$(find "$BASE" -maxdepth 1 -type f -name "*.csv" -iname "*merged*" -o -iname "*join*" 2>/dev/null | head -n1 || true)
+[ -n "$m" ] || exit 1
+'
+add_check 3 "Merged CSV non-empty" '[ -n "$(find "$BASE" -maxdepth 1 -type f -name "*.csv" -iname "*merged*" -o -iname "*join*" | head -n1)" ] && test -s "$(find "$BASE" -maxdepth 1 -type f -name "*.csv" -iname "*merged*" -o -iname "*join*" | head -n1)"'
+
+finish

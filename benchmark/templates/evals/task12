@@ -1,0 +1,10 @@
+BASE="my_pc/test_suite/task10"
+
+add_check 3 "Task folder exists" "[ -d \"$BASE\" ]"
+add_check 4 "At least 5 test functions exist" "[ \"$(grep -R \"def test_\" \"$BASE\" 2>/dev/null | wc -l)\" -ge 5 ]"
+add_check 3 "Pytest collection does not crash (allow failures)" '
+pytest -q "$BASE" --collect-only >"$BASE/collect.out" 2>&1
+test -s "$BASE/collect.out"
+'
+
+finish

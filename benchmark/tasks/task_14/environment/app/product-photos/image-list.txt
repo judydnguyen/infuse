@@ -1,0 +1,20 @@
+Product Image Inventory
+=======================
+
+Original Images (5000x5000px):
+- product_1.jpg
+- product_2.jpg
+- product_3.jpg
+- product_4.jpg
+- product_5.jpg
+- product_logo.png
+
+Usage:
+- Website: index.html references all product images
+- Catalog: config.json contains product metadata with image references
+- Marketing: Used in promotional materials
+
+Status: 
+- [ ] Images resized for web
+- [ ] Images compressed
+- [ ] Web-ready versions created in web-ready/ folder

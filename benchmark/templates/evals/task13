@@ -1,0 +1,11 @@
+BASE="my_pc/task11"
+sum="$BASE/summary.txt"
+
+add_check 3 "Summary file exists" "[ -f \"$sum\" ]"
+add_check 3 "Summary non-trivial length" "[ \"$(wc -w < \"$sum\" | tr -d ' ')\" -ge 30 ]"
+add_check 4 "Mentions at least 2 log-related keywords" '
+k=$(grep -Eio "(error|warn|failed|success|milestone|progress|timestamp)" "$sum" | wc -l | tr -d " ")
+[ "$k" -ge 2 ]
+'
+
+finish

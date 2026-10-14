@@ -1,0 +1,11 @@
+BASE="my_pc/task9"
+csv=$(find "$BASE" -maxdepth 1 -type f -iname "*.csv" 2>/dev/null | head -n1 || true)
+
+add_check 3 "CSV exists" "[ -n \"$csv\" ]"
+add_check 3 "CSV has header row" "head -n1 \"$csv\" | grep -q ."
+add_check 4 "Header includes artist + name + date (case-insensitive)" '
+h=$(head -n1 "$csv" | tr "[:upper:]" "[:lower:]")
+echo "$h" | grep -q "artist" && echo "$h" | grep -q "name" && echo "$h" | grep -q "date"
+'
+
+finish

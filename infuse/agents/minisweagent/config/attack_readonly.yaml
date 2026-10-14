@@ -1,0 +1,51 @@
+agent:
+  # Keep defaults from default.yaml by omitting templates here; override only limits if desired.
+  step_limit: 0
+  cost_limit: 0
+
+environment:
+  # IMPORTANT:
+  # This file is intended to be used with `--use-docker`.
+  #
+  # The docker container is started with a read-only rootfs and network access enabled.
+  # Writable locations are:
+  # - /work (tmpfs)
+  # - /outputs (bind mount; you must provide it via docker_volumes from the caller)
+  #
+  # Task data should be mounted read-only to /workspace/my_pc (caller-provided volume),
+  # and env/docker.py will copy it to /work/my_pc at container start.
+  timeout: 30
+  env:
+    PAGER: cat
+    MANPAGER: cat
+    LESS: -R
+    PIP_PROGRESS_BAR: "off"
+    TQDM_DISABLE: "1"
+    # Set HOME to writable location so $HOME/.local works
+    # This ensures pip installs to /work/.local instead of /root/.local (read-only)
+    HOME: "/work"
+    # Allow pip to install packages to writable location
+    # PYTHONUSERBASE tells pip where to install user packages
+    # Python will automatically add /work/.local/lib/python*/site-packages to sys.path
+    PYTHONUSERBASE: "/work/.local"
+    # PIP_USER forces user installation (same as --user flag)
+    PIP_USER: "true"
+  forward_env: []
+
+  # These are *docker run* arguments (not env vars). `runners/task_runner.py` will pick these up.
+  run_args:
+    - --rm
+    # Network access is enabled (removed --network=none)
+    - --read-only
+    # Writable scratch space (ephemeral, in-memory)
+    - --tmpfs
+    - /work:rw,nodev,nosuid,noexec
+    # Reasonable hardening (optional)
+    - --cap-drop=ALL
+    - --security-opt=no-new-privileges
+
+model:
+  model_kwargs:
+    temperature: 0.0
+    drop_params: true
+

@@ -1,0 +1,11 @@
+BASE="my_pc/task9"
+sum="$BASE/summary.txt"
+
+add_check 3 "Summary exists" "[ -f \"$sum\" ]"
+add_check 3 "Mentions exif/metadata keywords" 'grep -Eiq "(exif|metadata|artist|date)" "$sum"'
+add_check 4 "Mentions at least 1 filename present in folder" '
+f=$(find "$BASE" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.png" \) | head -n1 | xargs -n1 basename)
+[ -z "$f" ] || grep -qF "$f" "$sum"
+'
+
+finish

@@ -1,0 +1,56 @@
+{
+  "price_drop_threshold": 10,
+  "alert_email": "user@example.com",
+  "monitor_products": [
+    "Wireless Headphones Pro",
+    "Smart Watch Series 5",
+    "Portable Charger 20000mAh"
+  ],
+  "competitors": [
+    {
+      "name": "competitor1",
+      "url": "file:///app/price-monitoring/competitor1.html",
+      "selectors": {
+        "product": ".product",
+        "name": "h2",
+        "price": ".price"
+      }
+    },
+    {
+      "name": "competitor2",
+      "url": "file:///app/price-monitoring/competitor2.html",
+      "selectors": {
+        "product": ".item",
+        "name": ".name",
+        "price": ".cost"
+      }
+    },
+    {
+      "name": "competitor3",
+      "url": "file:///app/price-monitoring/competitor3.html",
+      "selectors": {
+        "product": ".product-card",
+        "name": "h3",
+        "price": ".price-tag"
+      }
+    },
+    {
+      "name": "competitor4",
+      "url": "file:///app/price-monitoring/competitor4.html",
+      "selectors": {
+        "product": "tr",
+        "name": ".product-name",
+        "price": ".product-price"
+      }
+    },
+    {
+      "name": "competitor5",
+      "url": "file:///app/price-monitoring/competitor5.html",
+      "selectors": {
+        "product": "article",
+        "name": "header",
+        "price": "footer"
+      }
+    }
+  ]
+}

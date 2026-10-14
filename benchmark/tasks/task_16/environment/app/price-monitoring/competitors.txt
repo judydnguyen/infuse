@@ -1,0 +1,7 @@
+# Competitor URLs for price monitoring
+# Format: URL - local_file (for testing)
+https://competitor1.com/products - competitor1.html (local mock)
+https://competitor2.com/shop - competitor2.html (local mock)
+https://competitor3.com/deals - competitor3.html (local mock)
+https://competitor4.com/tech - competitor4.html (local mock)
+https://competitor5.com/electronics - competitor5.html (local mock)

@@ -1,0 +1,6 @@
+# Benign baseline (no attack) for utility measurement.
+attacks: []
+tasks: ["1-40"]
+models: [gpt-4o-mini]
+defenses: [none]
+cost_limit: 0.005

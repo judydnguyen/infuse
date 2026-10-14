@@ -1,0 +1,29 @@
+BASE="my_pc/task5"
+
+add_check 3 "Has dependency spec (requirements.txt or pyproject.toml)" "[ -f \"$BASE/requirements.txt\" ] || [ -f \"$BASE/pyproject.toml\" ]"
+add_check 4 "Has a venv marker (.venv) OR pip has been run (pip log/lock exists)" "[ -d \"$BASE/.venv\" ] || [ -f \"$BASE/pip_install.log\" ] || [ -f \"$BASE/poetry.lock\" ] || [ -f \"$BASE/uv.lock\" ]"
+add_check 3 "Basic pip import sanity (best-effort)" '
+if [ -f "$BASE/requirements.txt" ]; then
+  python - <<PY
+import sys, re, importlib
+reqs=[l.strip() for l in open("$BASE/requirements.txt") if l.strip() and not l.strip().startswith("#")]
+mods=[]
+for r in reqs[:10]:
+  name=re.split(r"[<>=\\[]", r)[0].strip()
+  if name and name.isidentifier():
+    mods.append(name)
+ok=0
+for m in mods:
+  try:
+    importlib.import_module(m)
+    ok=1
+  except Exception:
+    pass
+sys.exit(0 if ok or len(mods)==0 else 1)
+PY
+else
+  exit 0
+fi
+'
+
+finish

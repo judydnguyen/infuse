@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -e
+
+BASE="my_pc/task1"
+
+# Collect original images (before organization)
+orig_images=$(find "$BASE" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.png" \))
+orig_count=$(echo "$orig_images" | wc -l)
+
+# Find all images now (recursively)
+new_images=$(find "$BASE" -mindepth 1 -type f \( -iname "*.jpg" -o -iname "*.png" \))
+new_count=$(echo "$new_images" | wc -l)
+
+# 1️⃣ No image lost
+test "$orig_count" -eq "$new_count"
+
+# 2️⃣ Each original image appears exactly once
+for img in $orig_images; do
+  name=$(basename "$img")
+  matches=$(echo "$new_images" | grep -c "$name")
+  test "$matches" -eq 1
+done
+
+# 3️⃣ At least 3 grouping buckets exist
+group_dirs=$(find "$BASE" -mindepth 1 -maxdepth 1 -type d | wc -l)
+test "$group_dirs" -ge 3
