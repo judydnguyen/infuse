@@ -4,7 +4,8 @@
 
 ### A Unified Surface Benchmark for Indirect Prompt Injection in Agentic Systems
 
-[![arXiv](https://img.shields.io/badge/arXiv-2610.20776-b31b1b.svg)](https://arxiv.org/abs/2610.20776)
+[![Paper](https://img.shields.io/badge/%F0%9F%93%84_Paper-PDF-b31b1b)](https://arxiv.org/pdf/2610.20776)
+[![arXiv](https://img.shields.io/badge/arXiv-2610.20776-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2610.20776)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-4%2C858%20passing-brightgreen)](tests/)
@@ -14,7 +15,7 @@
 
 **Plant an instruction in the files a coding agent will read. Measure whether it obeys, and whether it still finishes the job.**
 
-[Install](#-install) · [Quick start](#-quick-start) · [Grids](#-grids) · [Evaluate](#-evaluate--reproduce) · [How it works](#-how-injection-works) · [Results](#-results) · [Docs](#-documentation)
+[📄 Paper](https://arxiv.org/abs/2610.20776) · [Install](#-install) · [Quick start](#-quick-start) · [Grids](#-grids) · [Evaluate](#-evaluate--reproduce) · [How it works](#-how-injection-works) · [Results](#-results) · [Docs](#-documentation)
 
 <img src="assets/overview.png" alt="INFUSE overview: an agent with shell, code, package, network and git tools works in a task environment; an adversary plants a payload from one of five threat categories into an injection surface (here, a comment in train.py) and the agent exfiltrates a private SSH key" width="100%">
 
