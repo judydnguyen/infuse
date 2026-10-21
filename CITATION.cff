@@ -41,10 +41,12 @@ preferred-citation:
       given-names: Taylor T.
     - family-names: Leach
       given-names: Kevin
-  journal: "arXiv preprint"
+  journal: "arXiv preprint arXiv:2610.20776"
   year: 2026
-  # TODO: add the arXiv identifier once assigned, e.g.
-  # identifiers:
-  #   - type: other
-  #     value: "arXiv:XXXX.XXXXX"
-  # url: "https://arxiv.org/abs/XXXX.XXXXX"
+  doi: "10.48550/arXiv.2610.20776"
+  url: "https://arxiv.org/abs/2610.20776"
+  identifiers:
+    - type: doi
+      value: "10.48550/arXiv.2610.20776"
+    - type: url
+      value: "https://arxiv.org/abs/2610.20776"

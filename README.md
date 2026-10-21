@@ -4,6 +4,7 @@
 
 ### A Unified Surface Benchmark for Indirect Prompt Injection in Agentic Systems
 
+[![arXiv](https://img.shields.io/badge/arXiv-2610.20776-b31b1b.svg)](https://arxiv.org/abs/2610.20776)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-4%2C858%20passing-brightgreen)](tests/)
@@ -292,7 +293,7 @@ each defense helps depends on the model.
 
 *INFUSE: A Unified Surface Benchmark for Indirect Prompt Injection in Agentic Systems*,
 Thuy Dung Nguyen, Jingyi Guo, Rana Seda Dubauskas, Sreepriya Damuluru, Taylor T. Johnson, and
-Kevin Leach (Vanderbilt University). arXiv preprint, 2026.
+Kevin Leach (Vanderbilt University). [arXiv:2610.20776](https://arxiv.org/abs/2610.20776), 2026.
 
 ## 📝 Citation
 
@@ -300,8 +301,12 @@ Kevin Leach (Vanderbilt University). arXiv preprint, 2026.
 @article{nguyen2026infuse,
   title   = {{INFUSE}: A Unified Surface Benchmark for Indirect Prompt Injection in Agentic Systems},
   author  = {Nguyen, Thuy Dung and Guo, Jingyi and Dubauskas, Rana Seda and Damuluru, Sreepriya and Johnson, Taylor T. and Leach, Kevin},
-  journal = {arXiv preprint},
-  year    = {2026}
+  journal = {arXiv preprint arXiv:2610.20776},
+  year    = {2026},
+  eprint  = {2610.20776},
+  archivePrefix = {arXiv},
+  doi     = {10.48550/arXiv.2610.20776},
+  url     = {https://arxiv.org/abs/2610.20776}
 }
 ```
 
